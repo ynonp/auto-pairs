@@ -79,7 +79,9 @@ function! AutoPairsInsert(key)
 
   if g:AutoPairsDisableInsideText == 1
     let l:current_char = getline(".")[col(".")-1]
-    if strlen(l:current_char) != 0
+    let l:autochars = keys(g:AutoPairs) + values(g:AutoPairs)
+
+    if ( strlen(l:current_char) != 0 ) && ( index(l:autochars, l:current_char) < 0 )
       return a:key
     endif
   endif
